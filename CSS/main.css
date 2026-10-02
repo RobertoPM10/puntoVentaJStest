@@ -1,0 +1,303 @@
+/* 1. RESET Y VARIABLES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+[data-theme="light"] {
+  --bg: #f5f5f5;
+  --text-color: #000000;
+  --text-btn-theme: #ffffff;
+  --card-bg: #ffffff;
+  --btn-completar: #22a84a;
+  --btn-eliminar: #dd4b31;
+  --btn-bg-theme: #3f3f3f;
+  --borde-suave: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --bg: #111827;
+  --text-color: #f9fafb;
+  --text-btn-theme: #ffffff;
+  --card-bg: #253141;
+  --btn-completar: #22a84a;
+  --btn-eliminar: #dd4b31;
+  --btn-bg-theme: #232644;
+  --borde-suave: #414040;
+}
+
+:root {
+    --azul-primario: #1a82ff;
+    --azul-hover: #0069d9;
+    --verde-exito: #1ed760;
+    --rojo-peligro: #ff1a1a;
+    --gris-fondo: #f7f9fc;
+    --blanco: #ffffff;
+    --sombra: 0 4px 10px rgba(0, 0, 0, 0.08);
+    --texto-oscuro: #2c3e50;
+    
+}
+
+body {
+    background-color: var(--bg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* ESTO ES LA CLAVE: apila los elementos verticalmente */
+    justify-content: center; /* Centra el bloque completo verticalmente */
+    align-items: center;     /* Centra el h1 y el contenedor horizontalmente */
+    min-height: 100vh;
+    transition: background-color 0.3s ease-in-out;
+}
+.theme-toggle-btn {
+  background-color: var(--btn-bg-theme);
+  color: var(--text-btn-theme);
+  border: 1px solid #ccc;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+/* Control de visibilidad de iconos */
+.icon-moon {
+  display: inline-block;
+}
+.icon-sun {
+  display: none;
+}
+/* En Modo Oscuro: Ocultamos el sol, mostramos la luna */
+body.dark-mode .icon-sun {
+  display: inline-block;
+}
+body.dark-mode .icon-moon {
+  display: none;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+
+}
+
+/* 2. CONTENEDOR PRINCIPAL */
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+    align-items: flex-start;
+}
+
+/* 3. PANELES */
+.productos, .carrito {
+    background-color: var(--card-bg);
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    width: 50%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease-in-out;
+}
+h1 {
+    margin-bottom: 25px; /* Espacio entre el título y las cajas */
+    color: var(--text-color);
+    font-size: 1.8rem;   /* Un poco más grande para que destaque como título */
+    
+}
+h2 { 
+    margin-bottom: 15px; 
+    color: var(--text-color);
+    font-size: 1.3rem;
+}
+
+/* 4. SECCIÓN PRODUCTOS (ESTILO ELEGANTE ACTUALIZADO) */
+.asistente-scroll {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-auto-rows: max-content;
+    gap: 15px;
+    padding-right: 8px;
+    align-content: start;
+}
+
+.producto-item {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    color: var(--texto-oscuro);
+    border: 1px solid var(--borde-suave);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: fit-content;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.producto-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--azul-primario);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.img-producto {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    filter: brightness(0.96);
+    transition: filter 0.3s;
+}
+
+.producto-item:hover .img-producto {
+    filter: brightness(1);
+}
+
+.info-producto { 
+    padding: 10px; 
+    text-align: center;
+}
+
+.nombre-producto {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: var(--text-color);
+}
+
+.precio-producto {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--verde-exito);
+    font-weight: 700;
+}
+
+/* 5. SECCIÓN CARRITO */
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.lista-items-carrito {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.item-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.item-nombre { color:var(--text-color);font-weight: bold; font-size: 0.95rem; }
+.item-detalles { color: var(--text-color); font-size: 0.8rem; }
+.item-subtotal { color:var(--text-color);font-weight: 700; margin-right: 10px; }
+
+/* 6. FOOTER Y BOTONES */
+.btn-rojo {
+    background-color: var(--rojo-peligro);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.carrito-footer {
+    padding-top: 15px;
+    margin-top: 10px;
+    border-top: 2px solid #f9f9f9;
+}
+
+.total-contenedor {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+.total{ color: var(--text-color);}
+.precio-total { color: #27ae60; }
+
+.btn-completar {
+    width: 100%;
+    background-color: var(--verde-exito);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 7. MODALES */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content h3 { margin-bottom: 10px; color: var(--text-color); }
+.modal-content p { margin-bottom: 20px; color: var(--text-color); }
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-primario, .btn-secundario {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primario { background: var(--verde-exito); color: white; }
+.btn-secundario { background: #eee; color: #333; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 8. PERSONALIZACIÓN FINAL */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }

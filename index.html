@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Punto de Venta</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Titulo del punto de venta</h1>
+      <button id="themeToggle" class="theme-toggle-btn">
+        <i class="fa-solid fa-sun icon-sun"></i>
+        <i class="fa-solid fa-moon icon-moon"></i>
+        <span id="btnText">Modo Obscuro</span>
+      </button>
+    </nav>
+    <div class="contenedor">
+      <!-- Panel de Productos (Izquierda) -->
+      <div class="productos">
+        <h2>Nuestros productos</h2>
+        <!-- Este contenedor mantiene el scroll independiente de los botones -->
+        <div id="grilla-productos" class="asistente-scroll">
+          <!-- El JS inyectará aquí los botones de productos -->
+        </div>
+      </div>
+
+      <!-- Panel del Carrito (Derecha) -->
+      <div class="carrito">
+        <div class="carrito-header">
+          <h2>🛒 Carrito</h2>
+          <!-- Botón para vaciar todo el array del carrito -->
+          <button id="btn-limpiar" class="btn-rojo">🗑 Limpiar</button>
+        </div>
+
+        <!-- Lista de productos agregados con scroll independiente -->
+        <div id="lista-carrito" class="lista-items-carrito">
+          <!-- El JS inyectará aquí las filas de productos seleccionados -->
+        </div>
+
+        <!-- Footer fijo del carrito con el total y acción final -->
+        <div class="carrito-footer">
+          <div class="total-contenedor">
+            <span class="total">Total:</span>
+            <span id="total-precio" class="precio-total">$0.00</span>
+          </div>
+          <button class="btn-completar">Completar Venta</button>
+        </div>
+      </div>
+    </div>
+    <!-- Estructura de la Modal -->
+    <div id="modal-container" class="modal-overlay">
+      <div class="modal-content">
+        <div id="modal-icon"></div>
+        <h3 id="modal-titulo">Confirmar Venta</h3>
+        <p id="modal-mensaje">¿Estás seguro de completar esta transacción?</p>
+        <div class="modal-actions">
+          <button id="btn-modal-cancelar" class="btn-secundario">
+            Cancelar
+          </button>
+          <button id="btn-modal-confirmar" class="btn-primario">
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Plantilla del Ticket (Oculta por defecto) -->
+    <div id="ticket-imprimible" style="display: none">
+      <div
+        style="
+          width: 280px;
+          padding: 20px;
+          font-family: &quot;Courier New&quot;, Courier, monospace;
+          border: 1px solid #000;
+        "
+      >
+        <h2 style="text-align: center; margin: 0">MI CAFETÍN</h2>
+        <p style="text-align: center; font-size: 12px">
+          Fecha: <span id="ticket-fecha"></span>
+        </p>
+        <hr />
+        <div id="ticket-items"></div>
+        <hr />
+        <h3 style="display: flex; justify-content: space-between">
+          <span>TOTAL:</span>
+          <span id="ticket-total"></span>
+        </h3>
+        <p style="text-align: center; margin-top: 20px">
+          ¡Gracias por su compra!
+        </p>
+      </div>
+    </div> 
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="JS/script.js"></script>
+    <script src="JS/modoObscuro.js"></script>
+  </body>
+</html>
